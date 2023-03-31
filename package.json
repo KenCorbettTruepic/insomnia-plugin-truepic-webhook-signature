@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "insomnia": {
-    "name": "webhook-signature",
+    "name": "truepic-webhook-signature",
     "displayName": "Truepic Webhook Signature Generator",
     "description": "Generates the correct HMAC signature",
     "publisher": {
