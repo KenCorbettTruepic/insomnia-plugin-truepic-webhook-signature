@@ -24,8 +24,8 @@ function replaceWithHMAC(content, body, url) {
 
 module.exports.templateTags = [
   {
-    name: "webhookSignature",
-    displayName: "Webhook Signature",
+    name: "truepicWebhookSignature",
+    displayName: "Truepic Webhook Signature",
     description: "HMAC of request body with timestamp",
     args: [
       {
