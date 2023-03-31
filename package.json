@@ -1,23 +1,20 @@
 {
-  "name": "insomnia-plugin-request-body-hmac",
-  "version": "1.0.14",
-  "author": "John Wästerlund <john@grunka.com>",
-  "description": "Insomnia template tag for HMAC signature of value or request body",
-  "repository": "https://github.com/grunka/insomnia-plugin-request-body-hmac",
+  "name": "insomnia-plugin-webhook-signature",
+  "version": "1.0.0",
+  "author": "Ken Corbett <ken@truepic.com",
+  "description": "Insomnia template tag the Lens webhook signature",
+  "repository": "https://github.com/KenCorbettTruepic/insomnia-plugin-lens-webhook-signature",
   "bugs": {
-    "url": "https://github.com/grunka/insomnia-plugin-request-body-hmac"
-  },
-  "dependencies": {
-    "jsonpath-plus": "4.0.0"
+    "url": "https://github.com/KenCorbettTruepic/insomnia-plugin-lens-webhook-signature"
   },
   "main": "index.js",
   "insomnia": {
-    "name": "requestbodyhmac",
-    "displayName": "Request Body HMAC Signature Generator",
-    "description": "Generates HMAC signatures for request bodies and values",
+    "name": "webhook-signature",
+    "displayName": "Truepic Lens Webhook Signature Generator",
+    "description": "Generates the correct HMAC signature",
     "publisher": {
-      "name": "John Wästerlund",
-      "icon": "https://www.gravatar.com/avatar/de986eec8e60cbe1320969ae26339483.jpg"
+      "name": "Ken Corbett",
+      "icon": "https://en.gravatar.com/userimage/215582548/ed6f30a1775f9bb724a8deb1f56fd467.jpeg"
     },
     "images": {
       "icon": "icon.svg"
