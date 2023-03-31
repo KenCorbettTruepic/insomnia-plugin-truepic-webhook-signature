@@ -1,23 +1,19 @@
 {
-  "name": "insomnia-plugin-webhook-signature",
+  "name": "insomnia-plugin-truepic-webhook-signature",
   "version": "1.0.0",
   "author": "Ken Corbett <ken@truepic.com",
-  "description": "Insomnia template tag the Lens webhook signature",
-  "repository": "https://github.com/KenCorbettTruepic/insomnia-plugin-lens-webhook-signature",
+  "description": "Insomnia template tag the truepic webhook signature",
+  "repository": "https://github.com/KenCorbettTruepic/insomnia-plugin-truepic-webhook-signature",
   "bugs": {
-    "url": "https://github.com/KenCorbettTruepic/insomnia-plugin-lens-webhook-signature"
+    "url": "https://github.com/KenCorbettTruepic/insomnia-plugin-truepic-webhook-signature"
   },
   "main": "index.js",
   "insomnia": {
     "name": "webhook-signature",
-    "displayName": "Truepic Lens Webhook Signature Generator",
+    "displayName": "Truepic Webhook Signature Generator",
     "description": "Generates the correct HMAC signature",
     "publisher": {
-      "name": "Ken Corbett",
-      "icon": "https://en.gravatar.com/userimage/215582548/ed6f30a1775f9bb724a8deb1f56fd467.jpeg"
-    },
-    "images": {
-      "icon": "icon.svg"
+      "name": "Ken Corbett"
     },
     "unlisted": false
   }
