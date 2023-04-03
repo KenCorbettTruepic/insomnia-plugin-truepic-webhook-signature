@@ -13,8 +13,11 @@
     "displayName": "Truepic Webhook Signature Generator",
     "description": "Generates the correct HMAC signature",
     "publisher": {
-      "name": "Ken Corbett"
+      "name": "Ken Corbett - Truepic"
     },
-    "unlisted": false
+    "unlisted": false,
+    "images": {
+      "icon": "icon.svg"
+    }
   }
 }
