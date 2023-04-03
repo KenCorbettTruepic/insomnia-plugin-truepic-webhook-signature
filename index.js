@@ -1,83 +1,51 @@
 const crypto = require("crypto");
 
-const replacementContent = "Will be replaced with HMAC of request body";
+const replacementContent = "Will be replaced with Truepic Webhook Signature";
 
-function hmac(body, url, options) {
-  let content = options.removeWhitespace
-    ? JSON.stringify(JSON.parse(body))
-    : body;
+function hmac(body, url, key) {
+  const content = JSON.stringify(JSON.parse(body));
   const timestamp = Math.round(Date.now() / 1000);
-  const signature = crypto.createHmac(options.algorithm, options.key);
+  const signature = crypto.createHmac("sha256", key);
   signature.update([url, timestamp, content].join(","), "utf8");
-  return `t=${timestamp},s=${signature.digest(options.encoding)}`;
+  return `t=${timestamp},s=${signature.digest("base64")}`;
 }
 
 function replaceWithHMAC(content, body, url) {
-  return content.replace(
-    new RegExp(replacementContent + " \\(([a-f0-9]+)\\)", "g"),
-    (match, hex) => {
-      const options = JSON.parse(Buffer.from(hex, "hex").toString("utf-8"));
-      return hmac(body, url, options);
-    }
-  );
+  try {
+    return content.replace(
+      new RegExp(`${replacementContent} \\(([a-f0-9]+)\\)`, "g"),
+      (match, hex) => {
+        console.log({ match, hex });
+        const key = Buffer.from(hex, "hex").toString("utf-8");
+        return hmac(body, url, key);
+      }
+    );
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 }
 
 module.exports.templateTags = [
   {
     name: "truepicWebhookSignature",
     displayName: "Truepic Webhook Signature",
-    description: "HMAC of request body with timestamp",
+    description: "HMAC of request body with timestamp and a secret key",
     args: [
       {
-        displayName: "Algorithm",
-        type: "enum",
-        options: [
-          { displayName: "MD5", value: "md5" },
-          { displayName: "SHA1", value: "sha1" },
-          { displayName: "SHA256", value: "sha256" },
-          { displayName: "SHA512", value: "sha512" },
-        ],
-      },
-      {
-        displayName: "Digest Encoding",
-        description: "The encoding of the output",
-        type: "enum",
-        options: [
-          { displayName: "Base64", value: "base64" },
-          { displayName: "Hexadecimal", value: "hex" },
-        ],
-      },
-      {
-        displayName: "Remove whitespace from JSON",
-        description:
-          "Parse and stringify JSON request body to remove any whitespace",
-        type: "enum",
-        options: [
-          { displayName: "Yes", value: true },
-          { displayName: "No", value: false },
-        ],
-      },
-      {
-        displayName: "HMAC Secret Key",
+        displayName: "Secret Key",
         type: "string",
-        placeholder: "HMAC Secret Key",
+        placeholder: "Secret Key",
       },
     ],
-    async run(context, algorithm, encoding, removeWhitespace, key = "") {
-      if (encoding !== "hex" && encoding !== "base64") {
+    async run(context, key = "") {
+      if (!key) {
         throw new Error(
-          `Invalid encoding ${encoding}. Choices are hex, base64`
+          `You must provide your HMAC secret key to use this tag.`
         );
       }
 
-      const options = { key, algorithm, removeWhitespace, encoding };
-
-      return (
-        replacementContent +
-        " (" +
-        Buffer.from(JSON.stringify(options)).toString("hex") +
-        ")"
-      );
+      return `${replacementContent} (${Buffer.from(key).toString("hex")})`;
     },
   },
 ];
