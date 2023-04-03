@@ -2,7 +2,7 @@
   "name": "insomnia-plugin-truepic-webhook-signature",
   "version": "1.0.0",
   "author": "Ken Corbett <ken@truepic.com",
-  "description": "Insomnia template tag the truepic webhook signature",
+  "description": "Insomnia template tag to add the truepic webhook signature",
   "repository": "https://github.com/KenCorbettTruepic/insomnia-plugin-truepic-webhook-signature",
   "bugs": {
     "url": "https://github.com/KenCorbettTruepic/insomnia-plugin-truepic-webhook-signature"
@@ -11,7 +11,7 @@
   "insomnia": {
     "name": "truepic-webhook-signature",
     "displayName": "Truepic Webhook Signature Generator",
-    "description": "Generates the correct HMAC signature",
+    "description": "Generates a properly formatted truepic webhook signature",
     "publisher": {
       "name": "Ken Corbett - Truepic"
     },
